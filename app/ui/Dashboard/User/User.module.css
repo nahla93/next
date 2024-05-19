@@ -1,0 +1,124 @@
+.container{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 14px;
+    margin: 30px;
+    min-width: 1000px;
+    background: #fff;
+     padding: 20px 25px;
+     border-radius: 3px;
+     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.top{
+    padding-bottom: 15px;
+    background: #9da8b6;
+    color: black;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+}
+.top .addbutton{
+    color: #566787;
+    float: right;
+    font-size: 15px;
+    font-weight: 300;
+    top: -60px;
+    background: #e5e5e5;
+    border: none;
+    min-width: 50px;
+    border-radius: 5px;
+    border-color: #566787;
+    outline: none !important;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+    
+}
+.top .addbutton:hover, .top .addbutton:focus{
+    color: #566787;
+    background: #a9aea8;
+}
+.btnadmin:hover{
+    background-color: #94871e;
+}
+.table{
+    width: 100%;
+}
+.btn{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    flex: 2;
+    gap: 40px;
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.top .btn .members{
+   text-decoration-line: inherit;
+   color: white;
+}
+.top .btn .btnAdmin{
+    color:#29333d;
+    font-weight: 200;
+}
+ .btnSearch{
+    position: absolute;
+    right: 170px;
+    top:40px;
+}
+table.table tr td, table.table tr td
+{border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+  
+}
+table.table tr td:first-child{
+    width: 60px;
+}
+table.table thead tr{
+    background-color: #e5e5e5;
+}
+table.table tr td:last-child{
+    width: 100px;
+}
+table.table tbody tr:nth-of-type(odd){
+    background-color: #fcfcfc;
+}
+table.table tbody tr:hover{
+    background: #f5f5f5;
+}
+.userImage{
+    border-radius: 50%;
+    object-fit: cover;
+}
+    
+   
+.buttons  {
+    color: #605a2a;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-content: space-between;
+    flex: 2;
+    gap:10px;
+    margin: 0 5px;
+    
+}
+table.table td:last-child .buttons{
+    opacity: 0.9;
+    font-size: 22px;
+}
+.buttons:hover{
+    color: #94871e;
+}
+.active{
+    
+    
+    color: #e5786e;
+}
+
+table.table .user{
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}

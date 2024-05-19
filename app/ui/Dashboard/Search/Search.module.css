@@ -1,0 +1,20 @@
+.search{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.input{
+    background-color: transparent;
+    border:none;
+    color: black;
+    outline: none;
+}
+.input:hover{
+    background-color: white;
+    border-radius: 5px;
+}

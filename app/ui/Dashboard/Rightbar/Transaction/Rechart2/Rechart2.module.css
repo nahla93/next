@@ -1,0 +1,50 @@
+.container{
+    height: 200px;
+    width: 400px;
+    background-color:white;
+    border-radius: 10px;
+    box-shadow:  5px 10px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+   
+}
+.title{
+    font-weight: bold;
+    color: #3d5654;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 10px  ;
+   
+}
+.chart{
+    flex:1;
+    margin-top: -10px; 
+}
+.body{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    
+  
+
+
+}
+.etiq{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    bottom: 0;
+
+}
+.etiq1{
+    background-color: #0088FE;
+    border-radius: 5px;
+    padding: 2px;
+    width: 5px;
+}
+.etiq2{
+    background-color: #FFBB28;
+    border-radius: 5px;
+    padding: 2px;
+    width: 5px;
+}

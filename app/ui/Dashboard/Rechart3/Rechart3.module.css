@@ -1,0 +1,15 @@
+.container{
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:  5px 10px 20px rgba(0, 0, 0, 0.3);
+   
+}
+.title{
+    font-weight: bold;
+    color: #c89b31;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 10px  ;
+   
+}

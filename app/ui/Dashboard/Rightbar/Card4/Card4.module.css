@@ -1,0 +1,48 @@
+.bgcontainer{
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    
+}
+.container{
+    position: relative;
+    background-color:#425c54 ;
+    width: 300px;
+    box-shadow:  5px 10px 20px rgba(0, 0, 0, 0.3);
+}
+.item{
+    position: relative;
+    
+    padding: 20px 0px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.bg{
+    object-fit: contain;
+    opacity:0.4;
+
+}
+.texts{
+    display: flex;
+    flex-direction: column;
+    gap:24px;
+    background-color: linear gradient (to top,#425c54, #adc0ba,#dfe2e1 );
+}
+.notification{
+    font-weight: bold;
+    color: wheat;
+    
+}
+.title{
+    font-weight: 300;
+    font-size: 12px;
+    color: white;
+}
+.desc{
+    font-weight: 300;
+    font-size: 18px;
+    color: white;
+}

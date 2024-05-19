@@ -1,0 +1,39 @@
+.container{
+    background-color:white; 
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    flex-direction: column;
+    box-shadow:  5px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    position: relative;
+}
+.number{
+    font-size: 24px;
+    font-weight: 300;
+    color: black;
+}
+.container:hover{
+    background-color: #e0c6af;
+    font-weight: 500;
+}
+.title{
+  color: #c89b31;
+  font-weight: 700;
+  
+}
+.img{
+    border-radius: 50%;
+    float: left;
+    width: 100px;
+    margin-top: 20px;
+    margin-left: 60px;
+}

@@ -1,0 +1,195 @@
+.container{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 14px;
+    margin: 30px;
+    min-width: 1000px;
+    background: #fff;
+     padding: 20px 25px;
+     border-radius: 3px;
+     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.top{
+    padding-bottom: 15px;
+    background: #9da8b6;
+    color: #fff;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+}
+table.table thead tr{
+    background-color: #e5e5e5;
+}
+.top .addbutton{
+    color: #566787;
+    float: right;
+    font-size: 15px;
+    font-weight: 300;
+    top: -60px;
+    background: #fff;
+    border: none;
+    min-width: 50px;
+    border-radius: 5px;
+    border-color: #566787;
+    outline: none !important;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+    
+}
+.top .addbutton:hover, .top .addbutton:focus{
+    color: #566787;
+    background: #a9aea8;
+}
+
+
+.btn{
+    
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    flex: 2;
+    width: 50px;
+    height: 50px;
+    gap: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-right: 600px;
+    color: white;
+    border: #c9dedd;
+}
+.btn{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    flex: 2;
+    gap: 40px;
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.top .btn .admins{
+   text-decoration-line: inherit;
+   
+}
+.top .btn .btnUsers{
+    color:#29333d;
+}
+ .btnSearch{
+    position: absolute;
+    right: 170px;
+    top:40px;
+}
+.table{
+    width: 100%;
+}
+table.table tr td, table.table tr td
+{border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+  
+}
+table.table tr td:first-child{
+    width: 60px;
+}
+table.table tr td:last-child{
+    width: 100px;
+}
+table.table tbody tr:nth-of-type(odd){
+    background-color: #fcfcfc;
+}
+table.table tbody tr:hover{
+    background: #f5f5f5;
+}
+.userImage{
+    border-radius: 50%;
+    object-fit: cover;
+}
+    
+   
+.buttons  {
+    color: #605a2a;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-content: space-between;
+    flex: 2;
+    gap:10px;
+    margin: 0 5px;
+    
+}
+table.table td:last-child .buttons{
+    opacity: 0.9;
+    font-size: 22px;
+}
+.buttons:hover{
+    color: #94871e;
+}
+
+table.table .user{
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.active{
+    
+    
+    color: #1890b3;
+}
+.bloquer{
+    color:#e5786e;
+}
+.btnNommer{
+    background-color: #a9aea8;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    font-weight: 600;
+}
+.modal {
+    position: fixed;
+    top: 100px;
+    right: 500px;
+    width: 300px;
+    
+    
+}
+.modalContent{
+    border-radius: 5px;
+    color: black;
+    vertical-align: middle;
+    padding: 50px;
+    background-color: #f6f8f8;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    font-weight: 400;
+    
+}
+.modalHeader{
+    
+
+    top:30px;
+    font-size: 18px;
+   
+    
+}
+
+.modalFooter{
+    display: flex;
+    flex:2;
+    flex-direction: row;
+    gap:20px;
+    margin-top: 80px;
+    margin-left: 80px;
+}
+.modalFooter button{
+    border: 2px solid #e1eceb;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 10px;
+    color:black;
+    font-weight: 300;
+}
+.modalFooter button:hover{
+    background-color: #566787;
+}

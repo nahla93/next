@@ -1,0 +1,85 @@
+.container{
+    font-family: 'Varela Round', sans-serif;
+    font-size: 14px;
+    margin: 30px;
+    min-width: 1000px;
+    background: #fff;
+     padding: 20px 25px;
+     border-radius: 3px;
+     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.top{
+    padding-bottom: 15px;
+    color: black;
+    padding: 16px 30px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+    background-color: #b7875f;
+    position: relative;
+    height: 50px;
+}
+.top h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+.table{
+    width: 100%;
+}
+
+
+table.table tr td, table.table tr td
+{border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
+  
+}
+
+table.table thead tr{
+    background-color: #f8e7d7;
+    font-weight: 500;
+}
+table.table tr td:last-child{
+    width: 100px;
+}
+table.table tbody tr:nth-of-type(odd){
+    background-color: #fcfcfc;
+}
+table.table tbody tr:hover{
+    background: #f5f5f5;
+}
+.tagImg{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 30px;
+}
+.buttons  {
+    color: #b7875f;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    
+}
+table.table td:last-child .buttons{
+    opacity: 0.9;
+    font-size: 22px;
+}
+.buttons:hover{
+    color: #e0c6af;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    flex: 2;
+    gap: 40px;
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.btnSearch{
+    position: absolute;
+    right:100px;
+    top: 8px;
+    
+}

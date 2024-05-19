@@ -1,0 +1,65 @@
+.container{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e1eceb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title {
+    color:#425c54;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.menu{
+    display:flex;
+    align-items: center;
+    gap:20px;
+    justify-content: space-evenly;
+}
+.search{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e3f2f1;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.input{
+    background-color: transparent;
+    border:none;
+    color: black;
+    outline: none;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: #425c54;
+   
+}
+.admin{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    
+}
+.search:hover {
+    background-color: #cadfde;
+}
+.name{
+    color: white;
+    font-weight: 500;
+}
+   
+
+.adminImg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
