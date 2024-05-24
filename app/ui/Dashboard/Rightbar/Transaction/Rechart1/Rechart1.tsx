@@ -1,9 +1,9 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '@/app/ui/Dashboard/Rightbar/Transaction/Rechart1/Rechart1.module.css';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
-
+import { IPerson } from '@/app/types'
 // Enregistrez les composants nécessaires de Chart.js
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -35,12 +35,32 @@ interface ChartOptions {
 }
 
 const Rechart1 = () => {
+    const [userStats, setUserStats] = useState({ totalUsers: 0, blockedUsers: 0, activeUsers: 0 });
+
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            try {
+                const response = await fetch('/api/User');
+                const users:IPerson[] = await response.json();
+
+                const totalUsers = users.length;
+                const blockedUsers = users.filter(user => user.isBanned === true).length;
+                const activeUsers = users.filter(user => user.isBanned === false).length;
+
+                setUserStats({ totalUsers, blockedUsers, activeUsers });
+            } catch (err) {
+                console.error('Failed to fetch users', err);
+            }
+        };
+
+        fetchUserStats();
+    }, []);
     // Définissez les données de la charte
     const data = {
         labels: ['Blocked', 'Active', 'Total'],
         datasets: [
             {
-                data: [5.756, 25.200, 30.956],
+                data: [userStats.blockedUsers, userStats.activeUsers, userStats.totalUsers],
                 backgroundColor: ['#c99c33', '#425c54'], // Couleur des barres
                 borderWidth: 1, // Largeur de la bordure
                 borderRadius: 10,

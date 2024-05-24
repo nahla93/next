@@ -10,7 +10,7 @@ const tagSchema = new mongoose.Schema({
   
   
   visibility: { type: Boolean},
-  users : { type: String},
+  users : [{ type: mongoose.Schema.Types.ObjectId, ref:'User'}],
   
 });
 

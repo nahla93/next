@@ -1,13 +1,14 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '@/app/ui/Dashboard/Rechart3/Rechart3.module.css';
+import {IPerson} from '@/app/types'
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 
-// Enregistrez les composants nécessaires de Chart.js
+// Enregistrer les composants nécessaires de Chart.js
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-// Définissez une interface pour les options de la charte
+// Définir une interface pour les options de la charte
 interface ChartOptions {
     indexAxis: 'x' | 'y' | undefined;
     layout?: {
@@ -35,12 +36,35 @@ interface ChartOptions {
 }
 
 const Rechart3 = () => {
-    // Définissez les données de la charte
+    //identifier les données de la charte 
+    const [userStats, setUserStats] = useState({ totalUsers: 0 ,geneUsers:0, admUsers: 0, delivUsers: 0, techUsers:0 });
+
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            try {
+                const response = await fetch('/api/User');
+                const users:IPerson[] = await response.json();
+
+                const totalUsers = users.length;
+                const geneUsers = users.filter(user => user.tag === 'General ').length;
+                const admUsers = users.filter(user => user.tag === 'Administrative').length;
+                const delivUsers = users.filter(user => user.tag === 'Delivery  ').length;
+                const techUsers = users.filter(user => user.tag === 'Technical ').length;
+
+                setUserStats({ totalUsers, admUsers, geneUsers, delivUsers, techUsers });
+            } catch (err) {
+                console.error('Failed to fetch users', err);
+            }
+        };
+
+        fetchUserStats();
+    }, []);
+    // Définir les données de la charte
     const data = {
         labels: ['General Tag', 'Administrative Tag', 'Technical Tags', 'Delivery Tag'],
         datasets: [
             {
-                data: [150, 100, 35, 70],
+                data: [userStats.geneUsers, userStats.admUsers, userStats.techUsers, userStats.delivUsers],
                 backgroundColor: ['#c66b4e', '#425c54', '#c6684e', '#0088FE'], // Couleur des barres
                 borderWidth: 1, // Largeur de la bordure
                 borderRadius: 10,
@@ -48,9 +72,9 @@ const Rechart3 = () => {
         ]
     };
 
-    // Définissez les options de la charte
+    // Définir les options de la charte
     const options: ChartOptions = {
-        indexAxis: 'y', // Définissez l'axe des indices sur 'y'
+        indexAxis: 'y', // Définir l'axe des indices sur 'y'
         layout: {
             padding: 10 // Rembourrage autour de la charte
         },
@@ -79,7 +103,7 @@ const Rechart3 = () => {
     return (
         <div className={style.container}>
             <h2 className={style.title}> Distribution of Tags</h2>
-            {/* Affichez la charte avec les données et options spécifiées */}
+            {/* Afficher la charte avec les données et options spécifiées */}
             <Bar data={data} options={options} />
         </div>
     );

@@ -6,12 +6,12 @@ import Search from '@/app/ui/Dashboard/Search/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import Pagination from '@/app/ui/Dashboard/Pagination/page';
-import { FaLock } from "react-icons/fa6";
+
   import { IPerson } from '@/app/types';
 
-const User =  () => {
+const User =  (req:any) => {
   const [users, setUsers] = useState<IPerson[]>([]);
-
+  
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -30,6 +30,7 @@ const User =  () => {
     getUsers();
   }, []);
   
+
 
   return (
 
@@ -104,6 +105,7 @@ const User =  () => {
                     
                   </button>
                 </Link>
+                
               </div>
             </td>
           </tr>

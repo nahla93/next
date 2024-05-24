@@ -70,10 +70,14 @@ export const authOptions: NextAuthOptions = {
       }
       return user;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user}) {
       if (user) {
         token.email = user.email;
         token.name = user.name;
+        token.phone=user.phone;
+        token.adresse= user.adresse;
+
+        
       }
       return token;
     },
@@ -82,6 +86,9 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.email = token.email;
         session.user.name = token.name;
+        session.user.phone= token.phone;
+        session.user.adresse= token.adresse;
+       
       }
       console.log(session);
       return session;
@@ -90,6 +97,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET!,
   pages: {
     signIn: "/",
+    signOut: "/",
   },
 };
 

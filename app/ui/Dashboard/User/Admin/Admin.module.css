@@ -193,3 +193,9 @@ table.table .user{
 .modalFooter button:hover{
     background-color: #566787;
 }
+.button{
+    color: white;
+    background-color: #566787;
+    padding: 20px;
+    margin-top: 50px;
+}

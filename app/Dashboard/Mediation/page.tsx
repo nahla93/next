@@ -7,6 +7,7 @@ import { PiChats } from "react-icons/pi";
 import Pagination from '@/app/ui/Dashboard/Pagination/page';
 import style from '@/app/ui/Dashboard/Mediation/Mediation.module.css';
 import { IMediation } from '@/app/types';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 const Mediation = () => {
   const [mediations, setMediations] = useState<IMediation[]>([]);
 
@@ -38,8 +39,8 @@ const Mediation = () => {
        <table className={ style.table}>
         <thead>
            <tr>
-                <td> Request ID  </td> <td> Requester </td> <td> Submission Date </td>    
-                <td> View Chat </td>
+                <td> Request  </td> <td> Requester </td> <td> Submission Date </td>    
+                <td> View Mediation </td>
             </tr>
            
         </thead>
@@ -64,16 +65,16 @@ const Mediation = () => {
             
 
             
-            {/* <td>
+            <td>
               <div className={style.buttons}>
-                <Link href={`/Dashboard/Mediation/chat/${chat._id}`}>
+                <Link href={`/Dashboard/Mediation/${mediation._id}`}>
                   <button>
-                    <FontAwesomeIcon icon={PiChats} />
+                  <FontAwesomeIcon icon={faEye} />
                   </button>
                 </Link>
                 
               </div>
-            </td> */}
+            </td>
           </tr>
           ))}
         </tbody>

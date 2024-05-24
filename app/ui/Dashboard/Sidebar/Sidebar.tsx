@@ -18,7 +18,7 @@ const menuItems = [
     },
     {
         title: "Profile",
-        path: "/Dashboard/Profil",
+        path: "/Dashboard/Profile",
         icon: <ImProfile className={style.icon} />,
     },
     {

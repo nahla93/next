@@ -1,19 +1,37 @@
 
 "use client";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import style from '@/app/ui/Dashboard/User/Admin/Admin.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import Pagination from '@/app/ui/Dashboard/Pagination/page';
+import { IAdmin } from '@/app/types';
 const Admins = () => {
-  const handleViewClick = () => {
-    window.location.href = '/Dashboard/Profil';
-  }
+  
   const handleClick = () => {
     
     window.location.href = '/Dashboard/User';
   };
+  const [admins, setAdmins] = useState<IAdmin[]>([]);
+  
+  useEffect(() => {
+    const getAdmins = async () => {
+      try {
+        const response = await fetch("/api/Admin");
+        if (response.ok) {
+          const usersData = await response.json();
+          setAdmins(usersData);
+        } else {
+          console.error('Failed to fetch admins:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching admins:', error);
+      }
+    };
+
+    getAdmins();
+  }, []);
   return (
     <div className={ style.container}>
      <div className={ style.top}>
@@ -28,30 +46,40 @@ const Admins = () => {
       <table className={ style.table}>
         <thead>
             <tr>
-                <td>Id</td><td> Name</td> <td> date of birth </td> <td> Email</td> <td> Role </td>
-                <td> Mobile </td>
+                <td> Name</td> <td> Mobile </td> <td> Email</td> <td> Address </td>
+                <td>  Action </td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>001</td><td> < div className={ style.user}> 
+        {admins.map ((admin)=>(
+            <tr key={admin._id.toString()}>
+                <td> < div className={ style.user}> 
                     <img src="/ad.jpeg" alt="" width={40} height={40} className={ style.userImage}/>
-                    Alex
+                    {admin.name}
                     </div></td>
-                    <td> 23.09.1985 </td><td> Alex@gmail.com</td> <td> CEO </td> <td> 0156568565 </td> 
+                    <td> {admin.phone} </td><td> {admin.email}</td> <td> {admin.adresse} </td>  
                     <td>
                         <div className={style.buttons}>
-                          <Link href="/Dashboard/User/Profil" >
-                            <button > <FontAwesomeIcon icon={faEye} onClick={handleViewClick} /></button>
+                          <Link href={`/Dashboard/User/Admin/${admin._id}`} >
+                            <button > <FontAwesomeIcon icon={faEye}  /></button>
                           </Link>
-                          
+                          <Link href={`/Dashboard/User/Admin/Update/${admin._id}`}>
+                
+                             <button>
+                  
+                                            <FontAwesomeIcon icon={faEdit} />
+                    
+                  
+                             </button>
+                          </Link>
                         </div>
                     </td>
             </tr>
+            ))}
             </tbody>
 
     </table>
-    <Pagination />
+   
 
 </div>
        ) }

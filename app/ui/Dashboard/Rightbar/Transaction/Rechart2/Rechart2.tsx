@@ -1,14 +1,9 @@
-"use client"
-import React, { PureComponent } from 'react';
+"use client";
+import React, { PureComponent, useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import style from './Rechart2.module.css';
-
-const data = [
-  { name: 'Positive', value: 40, fill: '#425c54' },
-  { name: 'Negative', value: 30, fill: '#c99c33' },
-];
-
-const COLORS = ['#0088FE', '#FFBB28', '#FF8042'];
+import {IFeedback} from '@/app/types';
+const COLORS = ['#0088FE', '#FFBB28']; // Couleurs pour les deux types de feedbacks
 const RADIAN = Math.PI / 180;
 
 interface RenderLabelProps {
@@ -21,8 +16,35 @@ interface RenderLabelProps {
   index: number;
 }
 
-export default class Rechart2 extends PureComponent {
-  renderCustomizedLabel = ({
+const Rechart2 = () => {
+  const [feedbackData, setFeedbackData] = useState([
+    { name: 'Positive', value: 0, fill: '#425c54' },
+    { name: 'Negative', value: 0, fill: '#c99c33' },
+  ]);
+
+  useEffect(() => {
+    const fetchFeedbackData = async () => {
+      try {
+        const response = await fetch('/api/Feedback');
+        const feedbacks: IFeedback[] = await response.json();
+
+        const positiveFeedbacks = feedbacks.filter(feedback => feedback.type === 'positive').length;
+        const negativeFeedbacks = feedbacks.filter(feedback => feedback.type === 'negative').length;
+
+        setFeedbackData([
+          { name: 'Positive', value: positiveFeedbacks, fill: '#425c54' },
+          { name: 'Negative', value: negativeFeedbacks, fill: '#c99c33' },
+        ]);
+      } catch (err) {
+        console.error('Failed to fetch feedback data', err);
+      }
+    };
+
+    fetchFeedbackData();
+  }, []);
+
+
+  const renderCustomizedLabel = ({
     cx,
     cy,
     midAngle,
@@ -42,35 +64,34 @@ export default class Rechart2 extends PureComponent {
     );
   };
 
-  render() {
-    return (
-      <div className={style.container}>
-        <div className={style.title}>
-          <h2>Feedback Breakdown</h2>
-        </div>
-        
-        <div className={style.chart}>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={150} height={100}>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                label={this.renderCustomizedLabel}
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        
+  return (
+    <div className={style.container}>
+      <div className={style.title}>
+        <h2>Feedback Breakdown</h2>
       </div>
-    );
-  }
-}
+      
+      <div className={style.chart}>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart width={150} height={100}>
+            <Pie
+              data={feedbackData}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+              label={renderCustomizedLabel}
+            >
+              {feedbackData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+};
+
+export default Rechart2;

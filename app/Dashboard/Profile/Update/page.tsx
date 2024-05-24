@@ -1,12 +1,20 @@
 "use client";
 import React, {useState} from 'react';
-import style from '@/app/ui/Dashboard/Profil/Profil.module.css';
+import style from '@/app/ui/Dashboard/Profile/Profile.module.css';
+import  styles from '@/app/ui/Dashboard/User/AddU/AddU.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { MdOutlineUpdateDisabled } from 'react-icons/md';
+import {  useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 const Update = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const { data: session, status } = useSession();
+  const [name, setName] = useState(session?.user?.name || '');
+  const [adresse, setAdresse] = useState(session?.user?.adresse || '');
+  const [phone, setPhone] = useState(session?.user?.phone || '');
+  const [email, setEmail] = useState (session?.user?.email || '');
+    const router= useRouter ();
     const handleClick = () => {
         setShowModal(true);
     };
@@ -17,6 +25,54 @@ const Update = () => {
       setShowModal(false);
         
     };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement| HTMLSelectElement>) => {
+      const {name,value}= e.target;
+      switch (name)
+      {
+        case "name": setName (value);
+        break;
+        
+        case "email": setEmail (value);
+        break;
+        case "phone": setPhone (value);
+        break;
+        case "adresse": setAdresse (value);
+        break;
+        default:
+        break;
+      }
+    };
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const user={
+        name:name,
+        email:email,
+        
+        phone:phone,
+        adresse:adresse,
+      }
+      console.log(user);
+      try {
+        const res = await fetch("/api/Profile/Update", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+        if (res.status == 200 && res.ok) {
+          console.log("the profile is updated successfuly");
+          
+          router.push ("/Dashboard/Profile");
+        }
+        const result = await res.json();
+        alert(result.message);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    
   return (
     <div className= {style.wrapper}>
         <div className= {style.nav}>
@@ -26,12 +82,8 @@ const Update = () => {
             <div className= {style.descProfil}>
                <img alt='' src='/ad.jpeg' className= {style.imgProfil}></img> 
                 <button onClick={handleClick}><FontAwesomeIcon icon={faEdit}  className= {style.iconi}/> </button> 
-                {showModal && (
-                <div className={style.modal}>
-                    <button onClick={handleExportClick}>Export</button>
-                </div>
-            )}
-               <h2 className= {style.name}> Alex </h2>
+                
+               <h2 className= {style.name}> {session?.user?.name} </h2>
 
              </div>  
                
@@ -40,48 +92,44 @@ const Update = () => {
           
              
           <div className= {style.contentProfil}> 
-               <table className= {style.table}>
-                   <tbody>
-                     <tr>
-                         <td>First Name</td> 
-                         <td> <input type="text" className={style.input} placeholder='Alex'/> <FontAwesomeIcon icon={faEdit} className= {style.icon} />
-                        </td>
-                      </tr>
-                      <tr>
-                          <td>Last Name</td> 
-                          <td> <input type="text" className={style.input} placeholder='Alex'/> <FontAwesomeIcon icon={faEdit}className= {style.icon} />
-                          </td>
-                      </tr>
-                      <tr>
-                         <td>Phone number</td>
-                         <td>
-                           <input type="text" className={style.input} placeholder='77152202'/> <FontAwesomeIcon icon={faEdit} className= {style.icon}/>
-                            </td> 
-                       </tr>
-                       <tr>
-                          <td> Email Adress</td> 
-                          <td>
-                          <input type="text" className={style.input} placeholder='Alex@gmail.com'/> <FontAwesomeIcon icon={faEdit}className= {style.icon} />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>City</td> 
-                          <td>
-                          <input type="text" className={style.input} placeholder='Paris'/> <FontAwesomeIcon icon={faEdit} className= {style.icon} />
-                          </td>
-                        </tr>
-                         <tr>
-                           <td>Country</td> 
-                           <td>
-                           <input type="text" className={style.input} placeholder='France'/> <FontAwesomeIcon icon={faEdit} className= {style.icon} />
-                           </td>
-                         </tr>
-                     </tbody>
-                 </table>
-                 <div className= {style.buttons}>
-                    <button className= {style.btnsave}> Save </button>
-                    <button className= {style.btnupdate}> Cancel </button>
-            </div>   
+          <form className={styles.form}  onSubmit={handleSubmit}>
+          <label> Name </label>
+              <div className={ styles.text}>
+                
+                <input type='text' placeholder={session?.user.name}
+                        name="name"
+                           value={name}
+                          onChange={handleChange}  />
+                   </div>
+              
+              <label> Email </label>
+              <div className={ styles.text}>
+                 
+                <input type='text'   name="email" placeholder={session?.user.email}
+                           value={email}
+                          onChange={handleChange}  />
+              </div>
+             
+              <label>  Phone </label>
+              <div className={ styles.text}>
+                
+                <input type='number' placeholder={session?.user.phone}  name="phone"
+                           value={phone}
+                          onChange={handleChange} />
+              </div>
+              <label>  Address </label>
+              <div className={ styles.text}>
+                
+                <input type='text'   name="adresse"
+                           value={adresse} placeholder={session?.user.adresse}
+                          onChange={handleChange} />
+              </div>
+
+                 <div className= {styles.buttons}>
+                    <button className= {style.btnsave} type='submit'> Save </button>
+                    
+                 </div>   
+             </form>    
              </div> 
            </div>  
        </div>

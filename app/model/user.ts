@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   tag:{ type: String, required: true},
   adresse: { type: String},
   isBanned: { type: Boolean},
-  isBloqued: { type: Boolean},
+  
   password: { type:String},
   
 });

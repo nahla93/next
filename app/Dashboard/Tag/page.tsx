@@ -44,7 +44,7 @@ const Tag = () => {
              <button className={ style .btnTag}> Tags  </button>
              <button className={ style .btnPolls} onClick={handleClick}> Survey</button>
           </div>
-           <div className={ style .btnSearch}><Search /> </div> 
+           
         </thead>
          
          <tbody>
@@ -71,7 +71,7 @@ const Tag = () => {
             
 
             <td>
-              <div className={style.active}>{tag.visibility ? tag.visibility.toString() : ''}</div>
+              <div className={style.active}>{tag.visibility ? "public" : 'private'}</div>
             </td>
             <td>
               <div className={style.buttons}>
@@ -80,7 +80,7 @@ const Tag = () => {
                     <FontAwesomeIcon icon={faEye} />
                   </button>
                 </Link>
-                <Link href="/Dashboard/Tag/Modify">
+                <Link href={`/Dashboard/Tag/Modify/${tag._id}`}>
                   <button>
                     
                   <FontAwesomeIcon icon={faEdit} />

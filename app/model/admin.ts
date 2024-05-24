@@ -6,18 +6,16 @@ const adminSchema = new mongoose.Schema({
   
  email: { type: String,required: [true, "please provide a valid email"], unique: true },
 password: { type:String},
-lastName: {type:String},
+
 phone : { type: String},
-city: { type: String},
-country : { type: String},
-resetToken:{
-  type:String,
+
+adresse : { type: String},
+password_reset_token: {
   required: false,
+  type: String,
+  trim: true,
 },
-resetTokenExpire: {
-  type: Date,
-  required: false,
-}
+
   
 }, {timestamps:true}
 );

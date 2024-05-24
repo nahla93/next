@@ -1,0 +1,40 @@
+import Admin from "@/app/model/admin";
+import connect from "@/app/utility/db";
+import { NextRequest, NextResponse } from "next/server";
+import Cryptr from "cryptr";
+import Env from "@/config/env";
+
+import bcrypt from "bcryptjs";
+
+import {ResetPasswordPayload} from "@/app/types";
+connect();
+
+export async function POST(request: NextRequest) {
+  const payload: ResetPasswordPayload = await request.json();
+
+  
+  // * Decrypt string
+  const crypter = new Cryptr(Env.SECRET_KEY);
+  const email = crypter.decrypt(payload.email);
+
+  const user = await Admin.findOne({
+    email: email,
+    password_reset_token: payload.signature,
+  });
+  if (user == null || user == undefined) {
+    return NextResponse.json({
+      status: 400,
+      message: "Reset url is not correct. pls double check it .",
+    });
+  }
+
+  const salt = bcrypt.genSaltSync(10);
+  user.password = bcrypt.hashSync(payload.password, salt);
+  user.password_reset_token = null;
+  await user.save();
+
+  return NextResponse.json({
+    status: 200,
+    message: "Password changed successfully. please login with new password.",
+  });
+}

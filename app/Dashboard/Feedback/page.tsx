@@ -68,7 +68,7 @@ const Feedback = () => {
             
             <td>
               <div className={style.buttons}>
-                <Link href={`/Dashboard/User/${feedback._id}`}>
+                <Link href={`/Dashboard/Feedback/${feedback._id}`}>
                   <button>
                     <FontAwesomeIcon icon={faEye} />
                   </button>

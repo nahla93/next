@@ -51,8 +51,26 @@ export interface IAdmin{
     name: string,
     email: string
     password: string
-    lastName: string
+    
     phone: string
-    city: string
+    adresse: string
     country: string
 }
+ export type LoginErrorType = {
+    email?: string;
+    password?: string;
+  };
+  // * Forgot password payload type
+ export type ForgotPasswordPayload = {
+    email: string;
+  };
+  
+  // reset password type
+  export type ResetPasswordPayload = {
+    email: string;
+    signature: string;
+    password: string;
+    password_confirmation: string;
+  };
+  
+ 

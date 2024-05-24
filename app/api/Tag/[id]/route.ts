@@ -15,7 +15,7 @@ export const PUT = async (req: NextRequest, { params }: any) => {
         }
         
         
-  const { newName: name, newDescription: description, newUsers: users} = await req.json();
+  const {  name, description,  users} = await req.json();
         await connect();
         const tag = await Tag.findOneAndUpdate(
             { _id: id.toString() },
@@ -32,7 +32,7 @@ export const PUT = async (req: NextRequest, { params }: any) => {
         
         const res = {
             success: true,
-            message: "The person is updated successfully",
+            message: "The tag is updated successfully",
             data: tag
         };
         

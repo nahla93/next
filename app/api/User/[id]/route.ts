@@ -15,7 +15,7 @@ export const PUT = async (req: NextRequest, { params }: any) => {
         }
         
         
-  const { newName: name, newEmail: email, newCin: cin, newPhone: phone, newTag: tag, newAdresse: adresse} = await req.json();
+  const {  name,  email,  cin,  phone,  tag,  adresse} = await req.json();
         await connect();
         const user = await User.findOneAndUpdate(
             { _id: id.toString() },
